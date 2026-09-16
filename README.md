@@ -1,5 +1,7 @@
 # a199-flutter-expert-project
 
+[![CI](https://github.com/raissaputra/submis-fde/actions/workflows/ci.yml/badge.svg)](https://github.com/raissaputra/submis-fde/actions/workflows/ci.yml)
+
 Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
 
 ---

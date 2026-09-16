@@ -1,0 +1,31 @@
+{
+  "backdrop_path": "/path.jpg",
+  "genres": [
+    {
+      "id": 18,
+      "name": "Drama"
+    }
+  ],
+  "id": 1,
+  "name": "Name",
+  "original_name": "Original Name",
+  "overview": "Overview",
+  "poster_path": "/path.jpg",
+  "first_air_date": "2021-01-01",
+  "number_of_seasons": 2,
+  "number_of_episodes": 16,
+  "episode_run_time": [45],
+  "seasons": [
+    {
+      "air_date": "2021-01-01",
+      "episode_count": 8,
+      "id": 1,
+      "name": "Season 1",
+      "overview": "overview",
+      "poster_path": "/path.jpg",
+      "season_number": 1
+    }
+  ],
+  "vote_average": 8.0,
+  "vote_count": 100
+}

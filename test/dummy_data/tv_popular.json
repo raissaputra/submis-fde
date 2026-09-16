@@ -1,0 +1,17 @@
+{
+  "results": [
+    {
+      "backdrop_path": "/path.jpg",
+      "first_air_date": "2021-01-01",
+      "genre_ids": [10765, 18],
+      "id": 1,
+      "name": "Name",
+      "original_name": "Original Name",
+      "overview": "Overview",
+      "popularity": 100.0,
+      "poster_path": "/path.jpg",
+      "vote_average": 8.0,
+      "vote_count": 100
+    }
+  ]
+}
