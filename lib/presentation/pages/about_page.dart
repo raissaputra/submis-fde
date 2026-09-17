@@ -1,4 +1,5 @@
 import 'package:core/common/constants.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
@@ -7,6 +8,14 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Temporary helper to force a crash so it appears in Firebase Crashlytics
+      // (used to capture the dashboard screenshot). Safe to remove afterwards.
+      floatingActionButton: FloatingActionButton(
+        key: const Key('test_crash_button'),
+        tooltip: 'Test Crashlytics',
+        onPressed: () => FirebaseCrashlytics.instance.crash(),
+        child: const Icon(Icons.bug_report),
+      ),
       body: Stack(
         children: [
           Column(
