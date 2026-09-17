@@ -1,0 +1,26 @@
+name: core
+description: Shared building blocks (common utilities, database, genre) for ditonton modules.
+publish_to: 'none'
+version: 1.0.0
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  equatable: ^2.0.5
+  google_fonts: ^8.2.1
+  http: ^1.2.2
+  sqflite: ^2.3.3+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  sqflite_common_ffi: ^2.4.2+1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - certificates/

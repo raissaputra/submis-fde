@@ -22,18 +22,40 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Install dependencies
-        run: flutter pub get
+      - name: Analyze & test every package (core, movie, tv_series, app)
+        run: |
+          set -e
+          mkdir -p coverage
+          : > coverage/combined.info
+          for pkg in modules/core modules/movie modules/tv_series .; do
+            echo "::group::$pkg"
+            pushd "$pkg" >/dev/null
+            flutter pub get
+            if [ "$pkg" = "." ]; then
+              flutter analyze --no-fatal-warnings --no-fatal-infos lib test
+            else
+              flutter analyze --no-fatal-warnings --no-fatal-infos
+            fi
+            flutter test --coverage
+            popd >/dev/null
+            if [ -f "$pkg/coverage/lcov.info" ]; then
+              prefix=$(echo "$pkg" | sed 's/\//\\\//g')
+              if [ "$pkg" = "." ]; then
+                cat "$pkg/coverage/lcov.info" >> coverage/combined.info
+              else
+                sed "s/^SF:lib/SF:$prefix\/lib/g" "$pkg/coverage/lcov.info" >> coverage/combined.info
+              fi
+            fi
+            echo "::endgroup::"
+          done
 
-      - name: Verify formatting is not enforced (analyze)
-        run: flutter analyze --no-fatal-warnings --no-fatal-infos
+      - name: Report combined line coverage
+        run: |
+          awk -F: '/^LF:/{f+=$2} /^LH:/{h+=$2} END{printf "Combined line coverage: %d/%d = %.2f%%\n", h, f, (h/f)*100}' coverage/combined.info
 
-      - name: Run tests with coverage
-        run: flutter test --coverage
-
-      - name: Upload coverage report
+      - name: Upload combined coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-lcov
-          path: coverage/lcov.info
+          path: coverage/combined.info
           if-no-files-found: warn

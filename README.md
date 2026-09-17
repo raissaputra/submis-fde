@@ -4,6 +4,24 @@
 
 Repository ini merupakan starter project submission kelas Flutter Expert Dicoding Indonesia.
 
+## Fitur submission akhir
+
+- **Continuous Integration** — GitHub Actions (`.github/workflows/ci.yml`) menjalankan `flutter analyze` dan `flutter test` untuk seluruh module pada setiap push/PR. Lihat badge status build di atas.
+- **State management BLoC** — seluruh presentation layer memakai `flutter_bloc` (event-driven).
+- **SSL Pinning** — koneksi ke TMDB API hanya mempercayai sertifikat yang di-pin (`modules/core/lib/common/ssl_pinning.dart`).
+- **Modularization** — aplikasi dipecah menjadi package terpisah.
+
+### Struktur modularisasi
+
+| Package | Isi |
+| --- | --- |
+| `modules/core` | Kode bersama: common (constants, exception, failure, ssl_pinning, state_enum, utils), `DatabaseHelper`, entity/model `Genre`, dan `AppRoutes` (nama route lintas-module). |
+| `modules/movie` | Fitur Movie (domain, data, presentation) — bergantung pada `core`. |
+| `modules/tv_series` | Fitur TV Series (domain, data, presentation) — bergantung pada `core`. |
+| root (`ditonton`) | Shell aplikasi: `main.dart`, dependency injection, routing — bergantung pada `core`, `movie`, `tv_series`. |
+
+Menjalankan test seluruh module sekaligus (dengan gabungan coverage) memakai `test.sh` pada root repo.
+
 ---
 
 ## Tips Submission Awal

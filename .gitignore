@@ -34,6 +34,14 @@
 # Test coverage output
 /coverage/
 
+# Module build artifacts, coverage, and lockfiles (path packages)
+modules/**/build/
+modules/**/coverage/
+modules/**/.dart_tool/
+modules/**/pubspec.lock
+modules/**/.flutter-plugins
+modules/**/.flutter-plugins-dependencies
+
 # Web related
 lib/generated_plugin_registrant.dart
 
